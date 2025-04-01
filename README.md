@@ -42,34 +42,54 @@ Task 1 introduces a real-time Olympic data management pipeline. It continuously 
 information, including names, nationalities, and scores in each set. The primary objective is to
 collect and consolidate input data, ensuring no repetition of individuals. The pipeline, depicted in
 Figure 1, shows the operators and their dependencies.
+
 O1: Data Joining
+
 Collects three inputs (name, score, nationality) and consolidates the score and nationality
 information for each participant.
+
 O2: Duplicate Check
+
 Verifies the absence of repetitive individuals and eliminates any duplicates to ensure
 accurate and reliable data
 
 Task 2 extends pipeline in Task1 to add more functionality to it by adding more operators. The
 primary goal is to deliver comprehensive scores for each country while highlighting the top three
 individuals and their respective countries. Figure 2 shows the pipeline containing the operators
-and dependencies. To achieve this, the pipeline incorporates several operators:
+and dependencies.
+ 
+To achieve this, the pipeline incorporates several operators:
+
 O1: Data Joining
+
 Collects three inputs (name, score, nationality) and consolidates the score and nationality
 information for each participant.
+
 O2: Duplicate Check
+
 Verifies the absence of repetitive individuals and eliminates any duplicates to ensure
 accurate and reliable data.
+
 O3: Data Grouping by Nationality
+
 Organizes the collected data into groups based on the nationality of the participants.
+
 O4: Average Score Calculation
+
 Computes the average score for each group (nationality) by aggregating individual scores
 within each group.
+
 O5: Highest Score Retrieval
+
 Identifies and retrieves the individual with the highest score within each nationality
 group.
+
 O6: Display Average and Top player
+
 Presents the average score and the best-performing individual within each nationality
 group.
+
 O7: Overall Best Group and Top Three Individuals
+
 Calculates the average score for each group (country) and identifies the best-performing
 country. Additionally, displays the top three individuals across all countries.
