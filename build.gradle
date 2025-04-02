@@ -11,7 +11,8 @@ mainClassName = 'org.quickstart.DataStreamJob'
 description = """Assessment Software Job"""
 
 ext {
-    javaVersion = '1.11'
+//    javaVersion = '1.11'
+    javaVersion = '1.17'
     flinkVersion = '1.20.1'
     flinkPrevVersion = '1.20.1'
     scalaBinaryVersion = '_2.12'
@@ -23,7 +24,7 @@ targetCompatibility = javaVersion
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
-applicationDefaultJvmArgs = ["-Dlog4j.configurationFile=log4j2.properties"]
+applicationDefaultJvmArgs = ["--add-opens", "java.base/java.util=ALL-UNNAMED", "-Dlog4j.configurationFile=log4j2.properties"]
 
 
 // declare where to find the dependencies of your project
@@ -64,13 +65,15 @@ dependencies {
     implementation "org.apache.flink:flink-clients:${flinkVersion}"
     implementation "org.apache.flink:flink-table-api-java:${flinkVersion}"
     implementation "org.apache.flink:flink-table-api-java-bridge:${flinkVersion}"
+    implementation "org.apache.flink:flink-connector-jdbc:3.2.0-1.19"
+    implementation "mysql:mysql-connector-java:8.0.33"
+    implementation "com.ververica:flink-connector-mysql-cdc:3.0.1"
 
 
     implementation "org.apache.flink:flink-test-utils-junit:${flinkVersion}"
     implementation "org.apache.flink:flink-test-utils:${flinkVersion}"
 
     implementation "org.apache.flink:flink-java:${flinkPrevVersion}"
-    implementation "org.apache.flink:flink-connector-kafka:3.4.0-${flinkPrevVersion}"
 
     implementation "org.apache.commons:commons-math3:3.6.1"
 

@@ -1,10 +1,14 @@
 package com.asessment.app.util;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String name;
     private Integer score;
     private String nationality;
     private Long timestamp;
+
+    public Player() {}
 
     public Player(String name, int score,String nationality) {
         this.name = name;
