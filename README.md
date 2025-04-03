@@ -1,16 +1,23 @@
 # assessment_software_project
-Assessment Software Project for Applicants of the AI-Driven Edge-Cloud Computing Position
+Assessment Software Project for Applicants of the **AI-Driven Edge-Cloud Computing** Position.
 
 ## Overview
-There are 5 files in resources. The first one is config.properties that includes information to connect to MySQL database. As an example, there is config(example).properties file.
 
-All tasks are located in `src\main\java\com\asessment\app\tasks` path.
+This project consists of various tasks related to data processing, stream processing, and database operations.
+
+## Project Structure
+
+- The `resources` folder contains five files, including:
+    - `config.properties`: Stores MySQL connection details.
+    - `config(example).properties`: A sample configuration file for reference.
+- All tasks are implemented in `src\main\java\com\asessment\app\tasks`.
 
 ## Task 1
 
-`Task1PrimaryOperation` class includes primary operation for task1.
-To test, Input data is arrived from program arguments. The example file is included in resources (data.txt).
- 
+- `Task1PrimaryOperation` implements the core logic for Task 1.
+- The program reads input data from command-line arguments.
+- A sample input file (`data.txt`) is provided in the resources folder for testing.
+
 ## Task 2
 
 `Task2` class includes:
@@ -30,11 +37,17 @@ Because of limitations in my laptop, I had to use simple generated data as input
 It performs the following operations:
 
 ✅ Create a sample data stream (`Tuple3 <name, nationality, score>`)
+
 ✅ Groups data by nationality and computes the average score.
+
 ✅ Finds the highest-scoring player per nationality.
+
 ✅ Displays the average and top player for each nationality.
+
 ✅ Determines the overall best-performing nationality.
+
 ✅ Identifies the top three individual players overall.
+
 
 ## Task 3
 
