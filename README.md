@@ -3,36 +3,36 @@ Assessment Software Project for Applicants of the **AI-Driven Edge-Cloud Computi
 
 ## Overview
 
-This project consists of various tasks related to data processing, stream processing, and database operations.
+This project consists of various tasks related to **data processing, stream processing, and database operations**.
 
 ## Project Structure
 
-- The `resources` folder contains five files, including:
+- The `resources` folder contains **five files**, including:
     - `config.properties`: Stores MySQL connection details.
     - `config(example).properties`: A sample configuration file for reference.
 - All tasks are implemented in `src\main\java\com\asessment\app\tasks`.
 
 ## Task 1
 
-- `Task1PrimaryOperation` implements the core logic for Task 1.
-- The program reads input data from command-line arguments.
-- A sample input file (`data.txt`) is provided in the resources folder for testing.
+- `Task1PrimaryOperation` implements the core logic for **Task 1**.
+- The program reads **input data** from **command-line arguments**.
+- A sample input file (`data.txt`) is provided in the **resources** folder for testing.
 
 ## Task 2
 
-`Task2` class includes:
+`Task2` class Handles stream processing by:
 
-✅ Reading data from three files (`names.txt`, `nationality.txt`, and `scores.txt`) in resources.
+✅ Reading data from **three files** (`names.txt`, `nationality.txt`, and `scores.txt`) in resources.
 
-✅ connecting the three data stream.
+✅ **Connecting** the three data stream.
 
-✅ Deduplicating the merged stream.
+✅ **Deduplicating** the merged stream.
 
-✅ Grouping players by nationality.
+✅ **Grouping players** by nationality.
 
 
 `Task2WithSQL` class includes other operations of task 2.
-Because of limitations in my laptop, I had to use simple generated data as input stream instead of previous three files.
+Due to **hardware limitations**, this class uses generated sample data instead of reading from external files.
 
 It performs the following operations:
 
