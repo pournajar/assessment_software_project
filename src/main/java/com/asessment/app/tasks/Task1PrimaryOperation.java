@@ -37,11 +37,14 @@ import org.apache.flink.streaming.api.functions.windowing.delta.DeltaFunction;
 import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows;
 import org.apache.flink.streaming.api.windowing.evictors.TimeEvictor;
 import org.apache.flink.streaming.api.windowing.triggers.DeltaTrigger;
+import org.apache.flink.table.api.*;
 import org.apache.flink.util.Collector;
 //import org.apache.flink.util.ParameterTool;
 
 
 import java.time.Duration;
+
+import static org.apache.flink.table.api.Expressions.$;
 
 
 public class Task1PrimaryOperation {
@@ -56,6 +59,7 @@ public class Task1PrimaryOperation {
         System.out.println("Using windowSize=" + windowSize + ", data rate=" + rate);
         System.out.println(
                 "To customize example, use: WindowJoin [--windowSize <window-size-in-millis>] [--rate <elements-per-second>]");
+
 
         // get stream execution environment
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -172,6 +176,9 @@ public class Task1PrimaryOperation {
 
         // execute program
         env.execute("Olympic Data Management Example");
+
+        // Uncomment this to test tableEnvironment features
+        // TestTableEnvironment();
     }
 
 
@@ -202,5 +209,36 @@ public class Task1PrimaryOperation {
         }
     }
 
+    public static void TestTableEnvironment() {
+        TableEnvironment env = TableEnvironment.create(EnvironmentSettings.inStreamingMode());
+
+        // Fully programmatic
+        env.fromValues(1).execute().print();
+
+        // Flink SQL is included
+        env.sqlQuery("SELECT 1").execute().print();
+
+        // The API feels like SQL (built-in functions, data types, ...)
+        Table table = env.fromValues("1").as("c").select($("c").cast(DataTypes.STRING()));
+
+        // Everything is centered around Table objects, conceptually SQL views (=virtual tables)
+        env.createTemporaryView("InputTable", table);
+
+        // Catalogs and metadata management are the foundation
+        env.from("InputTable").insertInto(TableDescriptor.forConnector("blackhole").build()).execute();
+
+        // Let's get started with unbounded data...
+        env.from(
+                TableDescriptor.forConnector("datagen")
+                        .schema(
+                                Schema.newBuilder()
+                                        .column("uid", DataTypes.BIGINT())
+                                        .column("s", DataTypes.STRING())
+                                        .column("ts", DataTypes.TIMESTAMP_LTZ(3))
+                                        .build())
+                        .build())
+                .execute()
+                .print();
+    }
 
 }
