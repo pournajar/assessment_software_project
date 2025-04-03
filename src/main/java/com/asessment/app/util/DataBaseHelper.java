@@ -14,6 +14,13 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 public class DataBaseHelper {
 
     public void InitData(StreamExecutionEnvironment env, String fileName) {
+        String dbUrl = ConfigReader.get("db.url");
+        String hostname = ConfigReader.get("db.hostname");
+        int port = Integer.valueOf( ConfigReader.get("db.port"));
+        String dbUser = ConfigReader.get("db.username");
+        String dbPassword = ConfigReader.get("db.password");
+        String sourceDb = ConfigReader.get("db.name");
+        String driverName = ConfigReader.get("db.driver");
 
         // Read players data from file
         FileSource<String> fileSource = FileSource
@@ -39,10 +46,10 @@ public class DataBaseHelper {
                         .withMaxRetries(3)
                         .build(),
                 new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()
-                        .withUrl("jdbc:mysql://localhost:3306/assessment")
-                        .withDriverName("com.mysql.cj.jdbc.Driver")
-                        .withUsername("root")
-                        .withPassword("B@ran2378")
+                        .withUrl(dbUrl + sourceDb)
+                        .withDriverName(driverName)
+                        .withUsername(dbUser)
+                        .withPassword(dbPassword)
                         .build()
         ));
     }

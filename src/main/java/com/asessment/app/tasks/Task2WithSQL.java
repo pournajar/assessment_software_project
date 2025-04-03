@@ -16,7 +16,7 @@ public class Task2WithSQL {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         final StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
 
-        // Sample data stream of Tuple3 <name, nationality, score>
+        // Create sample data stream of Tuple3 <name, nationality, score>
         DataStream<Tuple3<String, Integer, String>> playerStream = env.fromElements(
                 new Tuple3<>("Alex", 10, "USA"),
                 new Tuple3<>("Peter", 20, "USA"),
@@ -38,7 +38,7 @@ public class Task2WithSQL {
 
         avgScoreByNationality.execute().print();
 
-        // Task2-O5: Highest Score Retrieval
+        // Task2-O5: Highest Score
         Table maxScoreByNationality = playerTable
                 .groupBy($("nationality"))
                 .select($("nationality"), $("score").max().as("max_score"));

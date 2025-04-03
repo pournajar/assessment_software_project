@@ -1,95 +1,39 @@
 # assessment_software_project
 Assessment Software Project for Applicants of the AI-Driven Edge-Cloud Computing Position
 
-# Overview
-The goal of this assessment is to implement a stream processing pipeline using Apache Flink and Kafka. The project consists of three progressively complex tasks. Applicants should aim for sophisticated and performance-efficient solutions, as simpler implementations will receive lower evaluations. Below are the details of the pipeline and the required steps for each task.
+## Overview
+There are 5 files in resources. The first one is config.properties that includes information to connect to MySQL database. As an example, there is config(example).properties file.
 
-Task 1: Setting Up a Basic Flink Pipeline
+All tasks are located in `src\main\java\com\asessment\app\tasks` path.
 
-1. Develop a Basic Flink Streaming Pipeline
-- Implement the pipeline using Java.
-- Utilize Gradle for project management.
-2. Implement Unit Tests
-- Use JUnit to validate functionality.
+## Task 1
 
-Task 2: Enhancing the Flink Pipeline and Integrating Kafka
-
-1. Extend the Flink Pipeline
-- Implement multiple operators, some as producers and others as consumers.
-2. Optimize Kafka Integration
-- Specify multiple partitions for Kafka topics to enhance performance.
-
-Task 3: Setting Up a Flink Pipeline on Kubernetes with database integration
-
-1. Kubernetes Deployment
-- Deploy the Flink pipeline on a Kubernetes cluster (you can use Minikube).
-2. Integrate a database as a data source
-- Use relational database (e.g, MysQL) as the source of input data
-3. Flink's CDC connectors
-- Setup Flink's CDC connectors to capture and process real-time changes from the database.
-
-# Task Submission
-Submit your solution via a PRIVATE GitHub repository. Provide access to the user dps-uibk and include:
-- Executable orchestration of the pipeline.
-- Necessary input files.
-- Function code deployed.
-- Kubernetes YAML files.
-- Brief execution instructions.
-
-# Pipeline specifications
-
-Task 1 introduces a real-time Olympic data management pipeline. It continuously fetches player
-information, including names, nationalities, and scores in each set. The primary objective is to
-collect and consolidate input data, ensuring no repetition of individuals. The pipeline, depicted in
-Figure 1, shows the operators and their dependencies.
-
-O1: Data Joining
-
-Collects three inputs (name, score, nationality) and consolidates the score and nationality
-information for each participant.
-
-O2: Duplicate Check
-
-Verifies the absence of repetitive individuals and eliminates any duplicates to ensure
-accurate and reliable data
-
-Task 2 extends pipeline in Task1 to add more functionality to it by adding more operators. The
-primary goal is to deliver comprehensive scores for each country while highlighting the top three
-individuals and their respective countries. Figure 2 shows the pipeline containing the operators
-and dependencies.
+`Task1PrimaryOperation` class includes primary operation for task1.
+To test, Input data is arrived from program arguments. The example file is included in resources (data.txt).
  
-To achieve this, the pipeline incorporates several operators:
+## Task 2
 
-O1: Data Joining
+`Task2` class includes:
+- reading from 3 separate files located in the resources: names.txt, nationality.txt, and scores.txt.
+- connecting 3 data stream
+- deduplicate the connected data stream
+- grouping by nationality
 
-Collects three inputs (name, score, nationality) and consolidates the score and nationality
-information for each participant.
+`Task2WithSQL` class includes other operations of task 2.
+Because of limitations in my laptop, I had to use simple generated data as input stream instead of previous three files.
 
-O2: Duplicate Check
+It performs the following operations:
+✔
+- Create a sample data stream (`Tuple3 <name, nationality, score>`)
+- Data Grouping by Nationality and Average Score Calculation
+- Get the Highest Score per nationality
+- Display Average and Top player per nationality
+- Get Overall Best Group
+- Get Top Three Individuals
 
-Verifies the absence of repetitive individuals and eliminates any duplicates to ensure
-accurate and reliable data.
+## Task 3
 
-O3: Data Grouping by Nationality
+`Task3` class includes connecting a `mySqlSource` and print real time data .
 
-Organizes the collected data into groups based on the nationality of the participants.
-
-O4: Average Score Calculation
-
-Computes the average score for each group (nationality) by aggregating individual scores
-within each group.
-
-O5: Highest Score Retrieval
-
-Identifies and retrieves the individual with the highest score within each nationality
-group.
-
-O6: Display Average and Top player
-
-Presents the average score and the best-performing individual within each nationality
-group.
-
-O7: Overall Best Group and Top Three Individuals
-
-Calculates the average score for each group (country) and identifies the best-performing
-country. Additionally, displays the top three individuals across all countries.
+`DataBaseHlper` class includes initialization of player table using input file (data.txt).
+After reading input data, a JDBC Sink defined to write players to MySQL database.  

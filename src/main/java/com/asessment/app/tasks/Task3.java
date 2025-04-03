@@ -27,6 +27,7 @@ public class Task3 {
         String driverName = ConfigReader.get("db.driver");
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper();
+
         // Uncomment this to initialize database with input data
         // dataBaseHelper.InitData(env, inputData);
 
