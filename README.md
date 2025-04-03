@@ -14,10 +14,15 @@ To test, Input data is arrived from program arguments. The example file is inclu
 ## Task 2
 
 `Task2` class includes:
+
 ✅ Reading data from three files (`names.txt`, `nationality.txt`, and `scores.txt`) in resources.
+
 ✅ connecting the three data stream.
+
 ✅ Deduplicating the merged stream.
+
 ✅ Grouping players by nationality.
+
 
 `Task2WithSQL` class includes other operations of task 2.
 Because of limitations in my laptop, I had to use simple generated data as input stream instead of previous three files.
