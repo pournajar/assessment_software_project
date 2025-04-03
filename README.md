@@ -14,26 +14,26 @@ To test, Input data is arrived from program arguments. The example file is inclu
 ## Task 2
 
 `Task2` class includes:
-- reading from 3 separate files located in the resources: names.txt, nationality.txt, and scores.txt.
-- connecting 3 data stream
-- deduplicate the connected data stream
-- grouping by nationality
+✅ Reading data from three files (`names.txt`, `nationality.txt`, and `scores.txt`) in resources.
+✅ connecting the three data stream.
+✅ Deduplicating the merged stream.
+✅ Grouping players by nationality.
 
 `Task2WithSQL` class includes other operations of task 2.
 Because of limitations in my laptop, I had to use simple generated data as input stream instead of previous three files.
 
 It performs the following operations:
-✔
-- Create a sample data stream (`Tuple3 <name, nationality, score>`)
-- Data Grouping by Nationality and Average Score Calculation
-- Get the Highest Score per nationality
-- Display Average and Top player per nationality
-- Get Overall Best Group
-- Get Top Three Individuals
+
+✅ Create a sample data stream (`Tuple3 <name, nationality, score>`)
+✅ Groups data by nationality and computes the average score.
+✅ Finds the highest-scoring player per nationality.
+✅ Displays the average and top player for each nationality.
+✅ Determines the overall best-performing nationality.
+✅ Identifies the top three individual players overall.
 
 ## Task 3
 
-`Task3` class includes connecting a `mySqlSource` and print real time data .
+- `Task3` class includes connecting a `mySqlSource` and print real time data .
 
-`DataBaseHlper` class includes initialization of player table using input file (data.txt).
-After reading input data, a JDBC Sink defined to write players to MySQL database.  
+- `DataBaseHlper` class initializes the `player` table using input file (`data.txt`).
+- After reading the input data, a JDBC Sink is defined to store players in MySQL.  
